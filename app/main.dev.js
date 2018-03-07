@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, remote } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -39,8 +39,6 @@ const installExtensions = async () => {
     .all(extensions.map(name => installer.default(installer[name], forceDownload)))
     .catch(console.log);
 };
-
-
 /**
  * Add event listeners...
  */
@@ -61,8 +59,15 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728
+    width: 1200,
+    height: 800,
+    transparent: true,
+    backgroundColor: '#00000000',
+    vibrancy: 'dark',
+    frame: false,
+    webPreferences: {
+      blinkFeatures: "EnumerateDevices,AudioOutputDevices"
+    }
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);

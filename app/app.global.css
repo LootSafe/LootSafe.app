@@ -4,14 +4,30 @@
  */
 @import "~font-awesome/css/font-awesome.css";
 
+html {
+  background-color: transparent;
+}
 body {
   position: relative;
   color: white;
   height: 100vh;
-  background-color: #232c39;
-  background-image: linear-gradient(45deg, rgba(0, 216, 255, 0.5) 10%, rgba(0, 1, 127, 0.7));
+  background-color: transparent;
   font-family: Arial, Helvetica, Helvetica Neue, serif;
   overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#content {
+  background-color: #0f1416;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  right: 0;
+  top: 5rem;
+  bottom: 30pt;
+  left: 250px;
+  padding: 2rem;
 }
 
 h2 {
@@ -40,4 +56,269 @@ a:hover {
   opacity: 1;
   text-decoration: none;
   cursor: pointer;
+}
+
+#nav {
+  position: absolute;
+  width: 120px;
+  color: #fff;
+  left: 0.2rem;
+}
+ul {
+  list-style-type: none;
+  margin: 1.3rem;
+  margin-top: 1.9rem;
+  margin-left: 5px;
+  padding: 0;
+  padding-top: 0.8rem;
+}
+li {
+  display: inline;
+  margin: 1rem;
+  font-size: 18pt;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  padding: 1rem 0 0.38rem 0;
+  color: #ccc;
+}
+li:hover {
+  cursor: pointer;
+  color: #eee;
+  border-bottom: 3px solid #00b894;
+
+}
+.active {
+  cursor: pointer;
+  color: #fff;
+  border-bottom: 2px solid #55efc4;
+
+}
+
+#dragger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 16rem;
+  height: 25px;
+  cursor: pointer;
+}
+
+#header {
+  position: relative;
+  height: 5rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0, 0.2);
+  background-color: #232E33;
+  -webkit-clip-path: polygon(21% 19%, 75% 19%, 76% 0, 100% 0, 100% 100%, 0 100%, 0 0, 20% 0);
+  clip-path: polygon(21% 19%, 75% 19%, 76% 0, 100% 0, 100% 100%, 0 100%, 0 0, 20% 0);  
+}
+
+#context {
+  position: absolute;
+  right: 10rem;
+  border: 1px solid rgba(255,255,255,0.0);
+  border-top: 0;
+  top: 0;
+  padding: 0.4rem 0.7rem;
+  color: #fff;
+}
+.svg-inline--fa {
+  color: rgba(255,255,255, 0.7);
+  margin: 0 0.5rem;
+}
+.svg-inline--fa:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+
+#logo {
+  position: absolute;
+  width: 90px;
+  left: 0.8rem;
+  top: 0.4rem;
+  opacity: 0.4;
+}
+
+#windowControls {
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  font-size: 9pt;
+  color: #fff;
+}
+.windowBtn {
+  padding: 0.4rem 0.8rem;
+  float:left;
+  background-color: red;
+  opacity: 1;
+  color: #fff;
+}
+.windowBtn:hover {
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+}
+.windowBtn .svg-inline--fa {
+  color: #fff;
+}
+.svg-inline--fa:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+#version p {
+  position: absolute;
+  top: 3rem;
+  font-size: 8pt;
+  color: #555;
+  right: 0.4rem;
+}
+
+#version p .svg-inline--fa {
+  color: #888;
+}
+
+#sidebar {
+  position: absolute;
+  background-color: rgba(53, 69, 77, 0.1);
+  width: 250px;
+  left: 0;
+  margin-top: 1px;
+  top: 5rem;
+  bottom: 0;
+}
+
+#trollbox {
+  background-color: rgba(35, 46, 51, 0.7);
+  position: absolute;
+  bottom: 0;
+  height: 250px;
+  width: 100%;
+}
+
+.tb-header {
+  background-color: rgba(35, 46, 51, 0.5);
+  margin: 0;
+}
+
+.tb-text {
+  width: 100%;
+  height: 30pt;
+  background-color: rgba(35, 46, 51, 0.4);
+  position: absolute;
+  bottom: 0;
+}
+
+.tb-content {
+  padding: 0.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  font-size: 9pt;
+}
+
+.tb-text input {
+  height: 100%;
+  width: 70%;
+  background-color: transparent;
+  color: #ccc;
+  border: none;
+  padding-left: 0.4rem;
+  outline: none;
+}
+
+.tb-text button {
+  width: 27%;
+  background-color: rgba(85, 239, 196, 0.8);
+  color: #fff;
+  border: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.tb-header p {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 18pt;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+}
+
+#status {
+  width: calc(100% - 250px);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: #232E33;
+  height: calc(30pt - 1rem);
+  font-size: 8pt;
+  text-align: right;
+  padding-top: 1rem;
+  color: #ccc;
+}
+
+.green {
+  color: #55efc4;
+}
+
+.red {
+  color: #D13335;
+}
+
+#sidebar h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  padding-left: 1rem;
+}
+
+#sidebar ul {
+  margin: 0;
+  padding: 0;
+  padding-left: 1rem;
+}
+
+#sidebar ul li {
+  list-style-type: none;
+  font-size: 10pt;
+  display: block;
+  padding: 0;
+}
+
+#sidebar ul li:hover {
+  border: none;
+  list-style-type: square !important;
+  display: block;
+  padding: 0;
+}
+
+#sidebar ul li:hover{
+  content: "";
+}
+
+#sidebar ul li::before {
+  position: absolute;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color:#D13335;
+  border-radius: 50%;
+  webkit-border-radius: 50%;
+}
+
+table {
+  width: 100%;
+  background: red;
+  border: none;
+  border-collapse: collapse;
+}
+
+tr, td, th {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.table-heading {
+  padding: 1rem 0;
+  background-color: #232E33;
 }

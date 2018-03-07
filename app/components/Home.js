@@ -1,7 +1,13 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
+
 import styles from './Home.css';
+
+import Header from './Core/Header';
+import Sidebar from './Core/Sidebar';
+import Status from './Core/Status';
+import ItemList from './Admin/ItemList';
 
 type Props = {};
 
@@ -11,10 +17,14 @@ export default class Home extends Component<Props> {
   render() {
     return (
       <div>
-        <div className={styles.container} data-tid="container">
-          <h2>Home</h2>
-          <Link to="/counter">to Counter</Link>
+        <Header />
+        <div className={styles.container} id="content" data-tid="container">
+          <Switch>
+            <Route path="/admin/item/list" component={ItemList} />
+          </Switch>
         </div>
+        <Sidebar />
+        <Status />
       </div>
     );
   }
