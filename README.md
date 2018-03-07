@@ -1,0 +1,1 @@
+# LootSafe.app
