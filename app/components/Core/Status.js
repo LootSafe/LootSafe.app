@@ -13,23 +13,7 @@ export default class Status extends Component {
   }
 
   componentDidMount() {
-    fetch(apiAddr)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          api: true,
-          rpc: json.connected
-        });
 
-        return true;
-      })
-      .catch(e => {
-        this.setState({
-          rpc: false,
-          api: false
-        });
-        console.error('Error fetching api status', e);
-      });
   }
 
   render() {
