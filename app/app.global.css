@@ -12,7 +12,7 @@ body {
   color: white;
   height: 100vh;
   background-color: transparent;
-  font-family: Arial, Helvetica, Helvetica Neue, serif;
+  font-family: 'Montserrat', sans-serif;
   overflow-y: hidden;
   margin: 0;
   padding: 0;
@@ -28,14 +28,17 @@ body {
   bottom: 30pt;
   left: 250px;
   padding: 2rem;
+  overflow-y: scroll;
 }
 
 h2 {
   margin: 0;
-  font-size: 2.25rem;
-  font-weight: bold;
+  font-size: 15pt;
   letter-spacing: -0.025em;
+
   color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200 !important;
 }
 
 p {
@@ -134,10 +137,12 @@ li:hover {
 
 #logo {
   position: absolute;
-  width: 90px;
-  left: 0.8rem;
-  top: 0.4rem;
-  opacity: 0.4;
+  width: 200px;
+  left: -3rem;
+  top: -4.2rem;
+  transform: rotate(20deg);
+  opacity: 0.2;
+
 }
 
 #windowControls {
@@ -198,7 +203,7 @@ li:hover {
 }
 
 .tb-header {
-  background-color: rgba(35, 46, 51, 0.5);
+  background-color: rgba(35, 46, 51, 0.9);
   margin: 0;
 }
 
@@ -308,7 +313,7 @@ li:hover {
 
 table {
   width: 100%;
-  background: red;
+  background: #555;
   border: none;
   border-collapse: collapse;
 }
@@ -317,8 +322,53 @@ tr, td, th {
   padding: 0;
   margin: 0;
   border: none;
+  text-transform: uppercase;
+  text-align: left;
+
+}
+td {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+tr:nth-child(odd) {
+  background-color: #101618;
+}
+
+tr:nth-child(even) {
+  background-color: #151b1d;
+}
+
+.table-heading th {
+  padding: 0.5rem !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200 !important;
 }
 .table-heading {
   padding: 1rem 0;
-  background-color: #232E33;
+  background-color: #232E33 !important;
+}
+
+
+
+h2 {
+  margin: 0;
+  font-size: 25pt !important;
+  text-align: left;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200 !important;
+}
+
+.loading td {
+  padding: 2rem 0;
+}
+
+.refresh {
+  float: right;
+  padding: 0.2rem;
+  font-size: 14pt !important;
+}
+.address {
+  font-size: 9pt;
 }

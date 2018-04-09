@@ -29,7 +29,7 @@ export default class Header extends Component {
           <i className="fa fa-users" />
           <i className="fa fa-cogs" />
         </div>
-        <img src="http://preview.lootsafe.io/app/images/logo.svg" alt="LootSafe Logo" id="logo" />
+        <img src="http://lootsafe.io/app/images/bearheadlogo.png" alt="LootSafe Logo" id="logo" />
         <div id="nav">
           <ul>
             <li className="active">Admin</li>
