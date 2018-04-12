@@ -26,7 +26,7 @@ export default class Header extends Component {
     return (
       <div id="header">
         <div id="context">
-          <i className="fa fa-users" />
+          <i className="fa fa-info-circle" />
           <i className="fa fa-cogs" />
         </div>
         <img src="http://lootsafe.io/app/images/bearheadlogo.png" alt="LootSafe Logo" id="logo" />

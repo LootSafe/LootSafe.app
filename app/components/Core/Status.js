@@ -13,21 +13,16 @@ export default class Status extends Component {
   }
 
   componentDidMount() {
-    /*
+    console.warn('STATUS BAR AT BOTTOM HAS GLITCH, IF PAGE BROKEN PLEASE CHECK Status.js FIRST')
+    
     fetch(`${apiAddr}`)
+    /*
       .then(res => res.json())
       .then(json => {
         this.setState({
-          rpc: (json.connected) ? true : false,
+          rpc: json.connected,
           api: true
         });
-      })
-      .catch(e => {
-        this.setState({
-          rpc: false,
-          api: false
-        });
-        console.warn('Error getting status');
       });
       */
   }

@@ -11,10 +11,10 @@ export default class Sidebar extends Component {
         <h3 className="section-header">Core</h3>
         <ul>
           <li>
-            <Link to="/admin/item/list">List Items</Link>
+            <Link to="/admin-item-list">List Items</Link>
           </li>
           <li>
-            <Link to="/admin/item/new">New Item</Link>
+            <Link to="/admin-item-new">New Item</Link>
           </li>
           <li>Distribute Item</li>
           <li>Burn Items</li>

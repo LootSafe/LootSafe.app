@@ -13,6 +13,15 @@
 import { app, BrowserWindow, remote } from 'electron';
 import MenuBuilder from './menu';
 
+
+require('electron-context-menu')({
+	prepend: (params, browserWindow) => [{
+		label: '',
+		// Only show it when right-clicking images
+		visible: params.mediaType === 'image'
+	}]
+});
+
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {

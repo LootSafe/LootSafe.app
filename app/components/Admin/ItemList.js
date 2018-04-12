@@ -2,29 +2,43 @@
 import React, { Component } from 'react';
 import { apiAddr } from '../../config';
 
+import Alert from '../Core/Alert';
+
 export default class ItemList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
       loading: true,
-      refreshing: false
+      refreshing: false,
+      showAlert: false,
+      activeItem: '0x0'
     };
   }
+
   componentDidMount() {
     fetch(`${apiAddr}/item/ledger`)
       .then(res => res.json())
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            items: json.data,
-            loading: false
+            items: [],
+            loading: false,
+            refreshing: false
           });
-          console.log(json.data);
-        } else {
-          this.setState({
-            error: json.message || 'Unknown error!'
-          });
+
+          const tickIn = (i) => {
+            const unpushed = this.state.items;
+            unpushed.push(json.data[i]);
+            this.setState({
+              items: unpushed
+            });
+
+            if (i < json.data.length - 1) {
+              setTimeout(() => { tickIn(i + 1) }, 100);
+            }
+          };
+          tickIn(0);
         }
         return false;
       })
@@ -34,22 +48,29 @@ export default class ItemList extends Component {
   }
 
   refresh() {
-    this.setState({ refreshing: true, loading: true });
+    this.setState({ refreshing: true });
 
     fetch(`${apiAddr}/item/ledger`)
       .then(res => res.json())
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            items: json.data,
-            loading: false,
+            items: [],
             refreshing: false
           });
-          console.log(json.data);
-        } else {
-          this.setState({
-            error: json.message || 'Unknown error!'
-          });
+
+          const tickIn = (i) => {
+            const unpushed = this.state.items;
+            unpushed.push(json.data[i]);
+            this.setState({
+              items: unpushed
+            });
+
+            if (i < json.data.length - 1) {
+              setTimeout(() => { tickIn(i + 1); }, 100);
+            }
+          };
+          tickIn(0);
         }
         return false;
       })
@@ -59,16 +80,39 @@ export default class ItemList extends Component {
   }
 
   buildTableData() {
-    return this.state.items.map((item, i) => {
+    return this.state.items.map(item => {
       return (
-        <tr key={`${item.name}-${i}`}>
-          <td><img src={`${JSON.parse(item.metadata).img}`} width="45"/></td>
+        <tr key={`${item.name}`} className="animated flipInX">
+          <td className="icon">
+            <img src={`${JSON.parse(item.metadata).img}`} alt="Icon of Item" height="45" />
+          </td>
           <td>{item._parsed.name}</td>
           <td className="address">{item.address}</td>
           <td>{item._parsed.symbol}</td>
           <td>{item._parsed.id}</td>
           <td>{item.totalSupply}</td>
-          <td></td>
+          <td>
+            { parseInt(item.ownerBalance, 0) > 0 &&
+              <button
+                className="no yes delist"
+                onClick={() => {
+                  this.setState({ showAlert: true, activeItem: item.address });
+                }}
+              >
+                Delsit
+              </button>
+            }
+            { parseInt(item.ownerBalance, 0) === 0 &&
+              <button
+                className="no delisted"
+                onClick={() => {
+                  this.setState({ showAlert: true, activeItem: item.address });
+                }}
+              >
+                Delsited
+              </button>
+            }
+          </td>
         </tr>
       );
     });
@@ -77,12 +121,57 @@ export default class ItemList extends Component {
   render() {
     return (
       <div className="wtf">
+        { this.state.showAlert &&
+          <Alert
+            message="Really remove new supply of items?"
+            cancel={() => {
+              this.setState({ showAlert: false });
+            }}
+            confirm={() => {
+              this.setState({ refreshing: true });
+              fetch(`${apiAddr}/item/clearAvailability`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
+                },
+                body: JSON.stringify({
+                  itemAddress: this.state.activeItem
+                })
+              })
+              .then(res => res.json())
+              .then(() => {
+                this.setState({ showAlert: false });
+                this.refresh();
+                return null;
+              })
+              .catch(e => {
+                console.log('Error clearing availability', e);
+              });
+            }}
+          />
+        }
         <h2 style={{ float: 'left' }}>List Items</h2>
-        <h2 className="refresh" onClick={() => { 
-          this.refresh();
-        }}>
-          <i className={this.state.refreshing ? "fas fa-spin fa-sync" : "fas fa-sync"}></i>
-        </h2>
+        { !this.state.refreshing &&
+          <h2
+            className="refresh"
+            onClick={() => {
+              this.refresh();
+            }}
+          >
+            <i className="fas fa-sync" />
+          </h2>
+        }
+        { this.state.refreshing &&
+          <h2
+            className="refresh"
+            onClick={() => {
+              this.refresh();
+            }}
+          >
+            <i className="fas fa-spin fa-sync" />
+          </h2>
+        }
         <table>
           <tr className="table-heading">
             <th>Icon</th>
@@ -100,11 +189,11 @@ export default class ItemList extends Component {
               <td />
               <td />
               <td>
-                <i className="fas fa-spinner fa-pulse" style={{fontSize: '40pt'}}></i>
+                <i className="fas fa-spinner fa-pulse" style={{ fontSize: '40pt' }} />
               </td>
               <td />
               <td />
-              <td /> 
+              <td />
             </tr>
           }
         </table>

@@ -6,7 +6,7 @@ export default class Trollbox extends Component {
     return (
       <div id="trollbox">
         <div className="tb-header">
-          <p>Trollbox</p>
+          <p>Global Chat</p>
         </div>
         <div className="tb-content">
           Matt: Welcome!
