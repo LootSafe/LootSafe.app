@@ -16,6 +16,9 @@ export default class Sidebar extends Component {
           <li>
             <Link to="/admin-item-new">New Item</Link>
           </li>
+          <li>
+            <Link to="/admin-item-spawn">Spawn Item</Link>
+          </li>
           <li>Distribute Item</li>
           <li>Burn Items</li>
         </ul>

@@ -4,7 +4,7 @@ import { apiAddr } from '../../config';
 
 import Alert from '../Core/Alert';
 
-export default class NewItem extends Component {
+export default class SpawnItem extends Component {
   constructor(props) {
     super(props);
 
@@ -19,6 +19,11 @@ export default class NewItem extends Component {
     };
   }
 
+    // const availableItems = this.state.items.map(item => {
+    //     <option value={item.name} key={item.name}>
+    //     {item.name}
+    //     </option>
+    // })
   componentWillMount() {
     fetch(`${apiAddr}/item/ledger`)
       .then(res => res.json())
@@ -57,24 +62,27 @@ export default class NewItem extends Component {
           />
         }
         <div>
-          <h2 style={{ float: 'left' }}>New Item</h2>
+          <h2 style={{ float: 'left' }}>Spawn Item</h2>
         </div>
         <div className="form">
           <div className="half">
-            <div className="input-group">
+            <div className="select-group">
               <label htmlFor="name">Name</label>
               <p className="description">This is the human friendly name of the item.</p>
               <br />
-              <input
-                type="text"
-                name="name"
-                onChange={e => {
-                  this.setState({
-                    name: e.target.value
-                  });
-                }}
-                placeholder="Potato"
-              />
+              <p>this.items</p>
+              <select>
+              {
+      this.state.items.map( item =>
+        <option value={item.name} key={item.name}>
+        {item.name}
+        </option>
+      )
+    }
+    {/* <option key="1" value="one">one</option>
+    <option>one</option>
+    <option>one</option> */}
+              </select>
             </div>
             <div className="input-group">
               <label htmlFor="id">ID</label>

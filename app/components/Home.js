@@ -9,6 +9,7 @@ import Sidebar from './Core/Sidebar';
 import Status from './Core/Status';
 import ItemList from './Admin/ItemList';
 import NewItem from './Admin/NewItem';
+import SpawnItem from './Admin/SpawnItem'
 
 type Props = {};
 
@@ -23,6 +24,7 @@ export default class Home extends Component<Props> {
           <Switch>
             <Route path="/admin-item-list" component={ItemList} />
             <Route path="/admin-item-new" component={NewItem} />
+            <Route path="/admin-item-spawn" component={SpawnItem} />
           </Switch>
         </div>
         <Sidebar />
