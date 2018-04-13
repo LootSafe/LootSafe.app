@@ -1,15 +1,21 @@
 // @flow
 import React, { Component } from 'react';
-import { apiAddr } from '../../config';
 
 import Alert from '../Core/Alert';
+import Warning from '../Core/Warning';
+
+const apiAddr = localStorage.getItem('apiurl');
 
 export default class NewItem extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
       items: [],
+=======
+      error: false,
+>>>>>>> c27dbdda34c02922d41b11d0e749c64cc3374f9b
       showAlert: false,
       name: '',
       id: '',
@@ -43,17 +49,57 @@ export default class NewItem extends Component {
       totalSupply: this.state.supply,
       metadata: this.state.metadata
     };
-    
 
+    fetch(`${apiAddr}/item/new`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (json.status === 200) {
+          this.setState({
+            showAlert: true
+          });
+        } else {
+          this.setState({
+            error: 'Error creating new item!'
+          });
+        }
+        return null;
+      })
+      .catch(e => {
+        console.warn('Error creating new item', e);
+        this.setState({
+          error: 'Error creating new item, check console for details.'
+        });
+      });
   }
 
   render() {
     return (
       <div className="wtf">
+        { this.state.error &&
+          <Warning
+            confirm={() => {
+              this.setState({
+                error: false
+              });
+            }}
+            message={this.state.error}
+          />
+        }
         { this.state.showAlert &&
           <Alert
             message="New item created!"
-            confirm={() => {}}
+            confirm={() => {
+              this.setState({
+                showAlert: false
+              });
+            }}
           />
         }
         <div>
@@ -143,6 +189,7 @@ export default class NewItem extends Component {
                 className="no yes right hundred"
                 onClick={() => {
                   console.log('this.state', this.state);
+                  this.execute();
                 }}
               >
                 Create
