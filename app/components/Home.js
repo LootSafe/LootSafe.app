@@ -59,12 +59,8 @@ export default class Home extends Component<Props> {
           <Switch>
             <Route path="/admin-item-list" component={ItemList} />
             <Route path="/admin-item-new" component={NewItem} />
-<<<<<<< HEAD
             <Route path="/admin-item-spawn" component={SpawnItem} />
-=======
-
             <Route path="/admin-crafter-new" component={NewRecipe} />
->>>>>>> c27dbdda34c02922d41b11d0e749c64cc3374f9b
           </Switch>
         </div>
         <Sidebar />

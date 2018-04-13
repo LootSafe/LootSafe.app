@@ -11,11 +11,7 @@ export default class NewItem extends Component {
     super(props);
 
     this.state = {
-<<<<<<< HEAD
-      items: [],
-=======
       error: false,
->>>>>>> c27dbdda34c02922d41b11d0e749c64cc3374f9b
       showAlert: false,
       name: '',
       id: '',

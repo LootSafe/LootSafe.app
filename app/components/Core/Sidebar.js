@@ -8,7 +8,6 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div id="sidebar">
-<<<<<<< HEAD
         <h3 className="section-header">Core</h3>
         <ul>
           <li>
@@ -23,7 +22,6 @@ export default class Sidebar extends Component {
           <li>Distribute Item</li>
           <li>Burn Items</li>
         </ul>
-=======
         <div id="menu">
           <h3 className="section-header">Core</h3>
           <ul>
@@ -66,7 +64,6 @@ export default class Sidebar extends Component {
             </li>
           </ul>
         </div>
->>>>>>> c27dbdda34c02922d41b11d0e749c64cc3374f9b
         <Trollbox />
       </div>
     );
