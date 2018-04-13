@@ -39,7 +39,13 @@ export default class SpawnItem extends Component {
         console.warn('Error fetching items', e);
       });
   }
-
+  listItemOptions() {
+    return this.state.items.map((item, index) => {
+      return (
+        <option key={item.id} value={item.address}>{item._parsed.name}</option>
+      );
+    });
+  }
   execute() {
     const payload = {
       name: this.state.name,
@@ -72,11 +78,8 @@ export default class SpawnItem extends Component {
               <br />
               <select >
               {
-      this.state.items.map( item =>
-        <option value={item._parsed.name} key={item._parsed.name}>
-        {item._parsed.name}
-        </option>
-      )
+      this.listItemOptions()
+      
     }
     {/* <option key="1" value="one">one</option>
     <option>one</option>
