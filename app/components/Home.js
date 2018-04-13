@@ -6,23 +6,60 @@ import styles from './Home.css';
 
 import Header from './Core/Header';
 import Sidebar from './Core/Sidebar';
+import Welcome from './Core/Welcome';
 import Status from './Core/Status';
 import ItemList from './Admin/ItemList';
 import NewItem from './Admin/NewItem';
 
+// Crafting
+import NewRecipe from './Admin/NewRecipe';
+
 type Props = {};
 
 export default class Home extends Component<Props> {
-  props: Props;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showWelcome: false
+    };
+  }
+  componentWillMount() {
+    if (!localStorage.getItem('apiurl')) {
+      this.setState({
+        showWelcome: true
+      });
+      console.warn('API ADDRESS NOT SET!');
+    }
+    if (!localStorage.getItem('apikey')) {
+      this.setState({
+        showWelcome: true
+      });
+      console.warn('API KEY MISSING!');
+    }
+  }
 
   render() {
     return (
       <div>
+        {
+          this.state.showWelcome &&
+          <Welcome
+            close={() => {
+              this.setState({
+                showWelcome: false
+              });
+              window.location.reload();
+            }}
+          />
+        }
         <Header />
         <div className={styles.container} id="content" data-tid="container">
           <Switch>
             <Route path="/admin-item-list" component={ItemList} />
             <Route path="/admin-item-new" component={NewItem} />
+
+            <Route path="/admin-crafter-new" component={NewRecipe} />
           </Switch>
         </div>
         <Sidebar />

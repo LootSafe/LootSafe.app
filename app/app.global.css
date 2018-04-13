@@ -321,6 +321,12 @@ li:hover {
   width: 100%;
 }
 
+#menu {
+  height: calc(100% - 250px);
+  margin-bottom: 250px;
+  overflow: scroll;
+}
+
 .tb-header {
   background-color: rgba(35, 46, 51, 0.9);
   margin: 0;
@@ -457,6 +463,10 @@ tr:nth-child(even) {
   background-color: #151b1d;
 }
 
+.iterator:nth-child(even) {
+  background-color: #101518;
+}
+
 .table-heading th {
   padding: 0.5rem !important;
   font-family: 'Montserrat', sans-serif;
@@ -505,7 +515,7 @@ h2 {
   left: 0;
   padding-right: 2rem;
   padding-left: 2rem;
-  z-index: 2;
+  z-index: 200000;
 }
 
 #alert h3 {
@@ -614,7 +624,7 @@ h2 {
   font-size: 9pt;
 }
 
-.form input[type="text"], input[type="number"] {
+.form input[type="text"], input[type="number"], select {
   width: calc(100% - 2rem);
   background: #232E33;
   border: none;
@@ -623,6 +633,10 @@ h2 {
   font-weight: 200 !important;
   color: #fff;
   font-size: 12pt;
+}
+
+select {
+  width: 100%;
 }
 
 textarea:focus, input:focus{
@@ -642,4 +656,83 @@ textarea:focus, input:focus{
 
 .darker {
   background: #151b1d;
+}
+
+.error {
+  background-color: #D13335 !important;
+}
+
+#welcome {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #101618;
+  z-index: 10000;
+  color: #fff;
+  padding: 2rem;
+  background: linear-gradient(238deg, #151b1d, #2e4c55, #232e33);
+  background-size: 600% 600%;
+
+  -webkit-animation: WelcomeAnimation 39s ease infinite;
+  -moz-animation: WelcomeAnimation 39s ease infinite;
+  animation: WelcomeAnimation 39s ease infinite;
+}
+
+#welcome h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200 !important;
+  font-size: 40pt;
+  margin: 0;
+}
+
+#welcome p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200 !important;
+  margin: 0;
+  color: #eee;
+}
+
+#welcome #alert h3 {
+  margin-top: 1rem;
+  font-size: 20pt !important;
+}
+
+.welcomeImage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+#welcome .half {
+  height: 100%;
+}
+
+#welcome input[type="text"]{
+  width: calc(100% - 2rem);
+  background: #151b1d;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200 !important;
+  color: #fff;
+  font-size: 12pt;
+}
+
+@-webkit-keyframes WelcomeAnimation {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}
+@-moz-keyframes WelcomeAnimation {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}
+@keyframes WelcomeAnimation { 
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
 }

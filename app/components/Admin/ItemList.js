@@ -1,8 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import { apiAddr } from '../../config';
 
 import Alert from '../Core/Alert';
+import Warning from '../Core/Warning';
+
+const apiAddr = localStorage.getItem('apiurl');
 
 export default class ItemList extends Component {
   constructor(props) {
@@ -12,7 +14,8 @@ export default class ItemList extends Component {
       loading: true,
       refreshing: false,
       showAlert: false,
-      activeItem: '0x0'
+      activeItem: '0x0',
+      error: false
     };
   }
 
@@ -43,7 +46,10 @@ export default class ItemList extends Component {
         return false;
       })
       .catch(e => {
-        console.warn(e);
+        this.setState({
+          error: 'Error fetching items, check console for details.'
+        });
+        console.warn('Error fetching items', e);
       });
   }
 
@@ -75,8 +81,20 @@ export default class ItemList extends Component {
         return false;
       })
       .catch(e => {
-        console.warn(e);
+        this.setState({
+          error: 'Error fetching items, check console for details.'
+        });
+        console.warn('Error fetching items', e);
       });
+  }
+
+  checkMetadataFormat(meta) {
+    try {
+      const img = JSON.parse(meta).img;
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   buildTableData() {
@@ -84,7 +102,9 @@ export default class ItemList extends Component {
       return (
         <tr key={`${item.name}`} className="animated flipInX">
           <td className="icon">
-            <img src={`${JSON.parse(item.metadata).img}`} alt="Icon of Item" height="45" />
+            { this.checkMetadataFormat(item.metadata) &&
+              <img src={`${JSON.parse(item.metadata).img}`} alt="Icon of Item" height="45" />
+            }
           </td>
           <td>{item._parsed.name}</td>
           <td className="address">{item.address}</td>
@@ -149,6 +169,16 @@ export default class ItemList extends Component {
                 console.log('Error clearing availability', e);
               });
             }}
+          />
+        }
+        { this.state.error &&
+          <Warning
+            confirm={() => {
+              this.setState({
+                error: false
+              });
+            }}
+            message={this.state.error}
           />
         }
         <h2 style={{ float: 'left' }}>List Items</h2>
