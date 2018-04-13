@@ -66,16 +66,15 @@ export default class SpawnItem extends Component {
         </div>
         <div className="form">
           <div className="half">
-            <div className="select-group">
+            <div className="input-group">
               <label htmlFor="name">Name</label>
               <p className="description">This is the human friendly name of the item.</p>
               <br />
-              <p>this.items</p>
-              <select>
+              <select >
               {
       this.state.items.map( item =>
-        <option value={item.name} key={item.name}>
-        {item.name}
+        <option value={item._parsed.name} key={item._parsed.name}>
+        {item._parsed.name}
         </option>
       )
     }
