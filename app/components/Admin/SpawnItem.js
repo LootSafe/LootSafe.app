@@ -87,8 +87,8 @@ export default class SpawnItem extends Component {
               </select>
             </div>
             <div className="input-group">
-              <label htmlFor="id">ID</label>
-              <p className="description">This is API friendly id of the item.</p>
+              <label htmlFor="id">Item Endpoint</label>
+              <p className="description">This is API friendly enpoint where the item will be located.</p>
               <br />
               <input
                 type="text"
@@ -98,56 +98,10 @@ export default class SpawnItem extends Component {
                     id: e.target.value
                   });
                 }}
-                placeholder="potato"
+                placeholder="{/newItemname}"
               />
             </div>
-            <div className="input-group">
-              <label htmlFor="symbol">Symbol</label>
-              <p className="description">This will be the symbol used for your item on wallets, exchanges, etc.</p>
-              <br />
-              <input
-                type="text"
-                name="symbol"
-                onChange={e => {
-                  this.setState({
-                    symbol: e.target.value
-                  });
-                }}
-                placeholder="TATR"
-              />
-            </div>
-          </div>
-          <div className="half darker">
-            <div className="input-group">
-              <label htmlFor="supply">Supply</label>
-              <p className="description">The total number of this item that can ever be distributed.</p>
-              <br />
-              <input
-                type="number"
-                name="supply"
-                onChange={e => {
-                  this.setState({
-                    supply: e.target.value
-                  });
-                }}
-                placeholder="100000"
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="metadata">Metadata</label>
-              <p className="description">Optional metadata, you can store anything you'd like here!</p>
-              <br />
-              <input
-                type="text"
-                name="metadata"
-                onChange={e => {
-                  this.setState({
-                    metadata: e.target.value
-                  });
-                }}
-                placeholder="{ img: 'http://cdn.com/potato.jpg' }"
-              />
-            </div>
+            
             <div className="input-group">
               <button
                 className="no yes right hundred"

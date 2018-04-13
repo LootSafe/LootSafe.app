@@ -8,20 +8,6 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div id="sidebar">
-        <h3 className="section-header">Core</h3>
-        <ul>
-          <li>
-            <Link to="/admin-item-list">List Items</Link>
-          </li>
-          <li>
-            <Link to="/admin-item-new">New Item</Link>
-          </li>
-          <li>
-            <Link to="/admin-item-spawn">Spawn Item</Link>
-          </li>
-          <li>Distribute Item</li>
-          <li>Burn Items</li>
-        </ul>
         <div id="menu">
           <h3 className="section-header">Core</h3>
           <ul>
@@ -31,6 +17,9 @@ export default class Sidebar extends Component {
             <li>
               <Link to="/admin-item-new">New Item</Link>
             </li>
+            <li>
+            <Link to="/admin-item-spawn">Spawn Item</Link>
+          </li>
             <li>Distribute Item</li>
           </ul>
           <h3 className="section-header">Crafter</h3>
