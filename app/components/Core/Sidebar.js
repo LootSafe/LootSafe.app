@@ -25,7 +25,7 @@ export default class Sidebar extends Component {
               <Link to="/admin-crafter-new">Add Recipe</Link>
             </li>
             <li>
-              <Link to="/admin-crafter-deconstruction">Add Deconstruction</Link>
+              <Link to="/admin-crafter-deconstruction-new">Add Deconstruction</Link>
             </li>
             <li>
               <Link to="/admin-crafter-craftables">Craftables</Link>
