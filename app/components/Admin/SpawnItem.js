@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import { apiAddr } from '../../config';
-import Web3 from 'web3'
 import Alert from '../Core/Alert';
 
 export default class SpawnItem extends Component {
