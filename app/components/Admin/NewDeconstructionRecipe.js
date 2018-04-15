@@ -6,7 +6,7 @@ import Warning from '../Core/Warning';
 
 const apiAddr = localStorage.getItem('apiurl');
 
-export default class NewRecipe extends Component {
+export default class NewDeconstructionRecipe extends Component {
   constructor(props) {
     super(props);
 
@@ -41,7 +41,7 @@ export default class NewRecipe extends Component {
   }
 
   execute() {
-    fetch(`${apiAddr}/recipe/new`, {
+    fetch(`${apiAddr}/recipe/deconstruction/new`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export default class NewRecipe extends Component {
       return (
         <div key={`requirement-${index}`} className="input-group iterator" style={{ padding: '1rem' }}>
           <label htmlFor="id">Required Item</label>
-          <p className="description">This is one of the required items used to craft target.</p>
+          <p className="description">This is one of the required items received when deconstructing the target.</p>
           <br />
           {
           /*
@@ -112,7 +112,7 @@ export default class NewRecipe extends Component {
           <br />
           <br />
           <label htmlFor="id">Required Amount</label>
-          <p className="description">How many of this item are required?</p>
+          <p className="description">How many of this item are received?</p>
           <br />
           <input
             type="number"
@@ -155,12 +155,12 @@ export default class NewRecipe extends Component {
           />
         }
         <div>
-          <h2 style={{ float: 'left' }}>New / Update Crafting Recipe</h2>
+          <h2 style={{ float: 'left' }}>New / Update Deconstructing Recipe</h2>
         </div>
         <div className="form">
           <div className="input-group" style={{ padding: '1rem' }}>
             <label htmlFor="name">Target Item</label>
-            <p className="description">This is the item which will be crafted.</p>
+            <p className="description">This is the item which will be dismantled.</p>
             <br />
             <select
               onChange={e => {
@@ -185,7 +185,7 @@ export default class NewRecipe extends Component {
                   });
                 }}
               >
-                <i className="fas fa-plus"></i> Add Another Requirement
+                <i className="fas fa-plus"></i> Add Another Result
               </button>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default class NewRecipe extends Component {
                   this.execute();
                 }}
               >
-                Create Recipe
+                Create Deconstruction Recipe
               </button>
             </div>
           </div>

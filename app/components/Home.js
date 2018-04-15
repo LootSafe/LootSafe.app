@@ -14,6 +14,7 @@ import SpawnItem from './Admin/SpawnItem'
 
 // Crafting
 import NewRecipe from './Admin/NewRecipe';
+import NewDeconstructionRecipe from './Admin/NewDeconstructionRecipe';
 
 type Props = {};
 
@@ -61,6 +62,7 @@ export default class Home extends Component<Props> {
             <Route path="/admin-item-new" component={NewItem} />
             <Route path="/admin-item-spawn" component={SpawnItem} />
             <Route path="/admin-crafter-new" component={NewRecipe} />
+            <Route path="/admin-crafter-deconstruction-new" component={NewDeconstructionRecipe} />
           </Switch>
         </div>
         <Sidebar />

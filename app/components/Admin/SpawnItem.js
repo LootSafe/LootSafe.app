@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { apiAddr } from '../../config';
-
+import Web3 from 'web3'
 import Alert from '../Core/Alert';
 
 export default class SpawnItem extends Component {
@@ -94,11 +94,12 @@ export default class SpawnItem extends Component {
                 type="text"
                 name="id"
                 onChange={e => {
+                  
                   this.setState({
                     id: e.target.value
                   });
                 }}
-                placeholder="{/newItemname}"
+                placeholder="/newItemname"
               />
             </div>
             
@@ -109,7 +110,7 @@ export default class SpawnItem extends Component {
                   console.log('this.state', this.state);
                 }}
               >
-                Create
+                Spawn
               </button>
             </div>
           </div>
