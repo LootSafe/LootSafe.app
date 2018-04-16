@@ -13,6 +13,7 @@ export default class NewDeconstructionRecipe extends Component {
     this.state = {
       items: [],
       error: false,
+      loading: true,
       showAlert: false,
       reqCount: 1,
       craftedItem: false,
@@ -30,7 +31,8 @@ export default class NewDeconstructionRecipe extends Component {
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            items: json.data
+            items: json.data,
+            loading: false
           });
         }
         return null;
@@ -88,7 +90,7 @@ export default class NewDeconstructionRecipe extends Component {
   buildRequirements() {
     return [...Array(this.state.reqCount)].map((i, index) => {
       return (
-        <div key={`requirement-${index}`} className="input-group iterator" style={{ padding: '1rem' }}>
+        <div key={`requirement-${index}`} className="input-group iterator" style={{ padding: '2rem 1rem' }}>
           <label htmlFor="id">Required Item</label>
           <p className="description">This is one of the required items received when deconstructing the target.</p>
           <br />
@@ -156,9 +158,16 @@ export default class NewDeconstructionRecipe extends Component {
         }
         <div>
           <h2 style={{ float: 'left' }}>New / Update Deconstructing Recipe</h2>
+          { this.state.loading &&
+            <h2
+              className="refresh"
+            >
+              <i className="fas fa-spinner fa-pulse" />
+            </h2>
+          }
         </div>
         <div className="form">
-          <div className="input-group" style={{ padding: '1rem' }}>
+          <div className="input-group" style={{ padding: '3rem 2rem' }}>
             <label htmlFor="name">Target Item</label>
             <p className="description">This is the item which will be dismantled.</p>
             <br />
@@ -178,7 +187,7 @@ export default class NewDeconstructionRecipe extends Component {
             { this.buildRequirements() }
             <div className="input-group" style={{ padding: '1rem', marginTop: '3rem' }}>
               <button
-                className="no hundred"
+                className="no hundred iteratorBtn"
                 onClick={() => {
                   this.setState({
                     reqCount: this.state.reqCount + 1
@@ -190,12 +199,12 @@ export default class NewDeconstructionRecipe extends Component {
             </div>
           </div>
 
-          <div className="darker" style={{ position: 'relative', padding: '1rem' }}>
+          <div className="darker" style={{ position: 'relative', padding: '3rem 2rem' }}>
             <label>Ready?</label>
             <p className="description">If you're all ready just hit create below and we'll add your recipe to the chain.</p>
             <div className="input-group" style={{ padding: '1rem', marginTop: '3rem' }}>
               <button
-                className="no yes hundred"
+                className="no yes hundred iteratorBtn"
                 onClick={() => {
                   this.execute();
                 }}

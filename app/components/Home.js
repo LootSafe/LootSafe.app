@@ -14,6 +14,8 @@ import NewItem from './Admin/NewItem';
 // Crafting
 import NewRecipe from './Admin/NewRecipe';
 import NewDeconstructionRecipe from './Admin/NewDeconstructionRecipe';
+import Craftables from './Admin/Craftables';
+import Deconstructables from './Admin/Deconstructables';
 
 type Props = {};
 
@@ -62,6 +64,8 @@ export default class Home extends Component<Props> {
 
             <Route path="/admin-crafter-new" component={NewRecipe} />
             <Route path="/admin-crafter-deconstruction-new" component={NewDeconstructionRecipe} />
+            <Route path="/admin-crafter-craftables" component={Craftables} />
+            <Route path="/admin-crafter-deconstructables" component={Deconstructables} />
           </Switch>
         </div>
         <Sidebar />
