@@ -16,6 +16,7 @@ export default class NewRecipe extends Component {
       showAlert: false,
       reqCount: 1,
       craftedItem: false,
+      loading: true,
       requiredItems: [],
       requiredCounts: []
     };
@@ -30,7 +31,8 @@ export default class NewRecipe extends Component {
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            items: json.data
+            items: json.data,
+            loading: false
           });
         }
         return null;
@@ -49,7 +51,7 @@ export default class NewRecipe extends Component {
       },
       body: JSON.stringify({
         result: this.state.craftedItem,
-        materials: this.state.requiredItemsm,
+        materials: this.state.requiredItems,
         counts: this.state.requiredCounts
       })
     })
@@ -156,9 +158,16 @@ export default class NewRecipe extends Component {
         }
         <div>
           <h2 style={{ float: 'left' }}>New / Update Crafting Recipe</h2>
+          { this.state.loading &&
+            <h2
+              className="refresh"
+            >
+              <i className="fas fa-spinner fa-pulse" />
+            </h2>
+          }
         </div>
         <div className="form">
-          <div className="input-group" style={{ padding: '1rem' }}>
+          <div className="input-group" style={{ padding: '3rem 2rem' }}>
             <label htmlFor="name">Target Item</label>
             <p className="description">This is the item which will be crafted.</p>
             <br />
@@ -176,9 +185,9 @@ export default class NewRecipe extends Component {
            
           <div className="darker" style={{ position: 'relative' }}>
             { this.buildRequirements() }
-            <div className="input-group" style={{ padding: '1rem', marginTop: '3rem' }}>
+            <div className="input-group" style={{ padding: '2rem', marginTop: '1rem', position: 'relative' }}>
               <button
-                className="no hundred"
+                className="no hundred iteratorBtn"
                 onClick={() => {
                   this.setState({
                     reqCount: this.state.reqCount + 1
@@ -190,12 +199,12 @@ export default class NewRecipe extends Component {
             </div>
           </div>
 
-          <div className="darker" style={{ position: 'relative', padding: '1rem' }}>
+          <div className="darker" style={{ position: 'relative', padding: '3rem 2rem' }}>
             <label>Ready?</label>
             <p className="description">If you're all ready just hit create below and we'll add your recipe to the chain.</p>
             <div className="input-group" style={{ padding: '1rem', marginTop: '3rem' }}>
               <button
-                className="no yes hundred"
+                className="no yes hundred iteratorBtn"
                 onClick={() => {
                   this.execute();
                 }}

@@ -466,6 +466,15 @@ tr:nth-child(even) {
 .iterator:nth-child(even) {
   background-color: #101518;
 }
+.iterator {
+  padding: 3rem 2rem !important;
+}
+
+.iteratorBtn {
+  right: 2rem !important;
+  left: 2rem !important;
+  width: calc(100% - 4rem) !important;
+}
 
 .table-heading th {
   padding: 0.5rem !important;
