@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { apiAddr } from '../../config';
 import Alert from '../Core/Alert';
 
+
 export default class SpawnItem extends Component {
   constructor(props) {
     super(props);
@@ -10,19 +11,12 @@ export default class SpawnItem extends Component {
     this.state = {
       items: [],
       showAlert: false,
-      name: '',
-      id: '',
-      symbol: '',
-      supply: '',
-      metadata: ''
+      receiverAddress: ''
     };
-  }
 
-    // const availableItems = this.state.items.map(item => {
-    //     <option value={item.name} key={item.name}>
-    //     {item.name}
-    //     </option>
-    // })
+    this.checkAddress = this.checkAddress.bind(this);
+  }
+  
   componentWillMount() {
     fetch(`${apiAddr}/item/ledger`)
       .then(res => res.json())
@@ -38,6 +32,15 @@ export default class SpawnItem extends Component {
         console.warn('Error fetching items', e);
       });
   }
+
+  checkAddress(address) {
+    if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+      return false;
+    } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+      return true;
+    }
+  }
+
   listItemOptions() {
     return this.state.items.map((item, index) => {
       return (
@@ -45,6 +48,7 @@ export default class SpawnItem extends Component {
       );
     });
   }
+
   execute() {
     const payload = {
       name: this.state.name,
@@ -53,8 +57,6 @@ export default class SpawnItem extends Component {
       totalSupply: this.state.supply,
       metadata: this.state.metadata
     };
-    
-
   }
 
   render() {
@@ -70,35 +72,32 @@ export default class SpawnItem extends Component {
           <h2 style={{ float: 'left' }}>Spawn Item</h2>
         </div>
         <div className="form">
-          <div className="half">
+          <div className="full">
             <div className="input-group">
               <label htmlFor="name">Name</label>
               <p className="description">This is the human friendly name of the item.</p>
               <br />
               <select >
-              {
-      this.listItemOptions()
-      
-    }
-    {/* <option key="1" value="one">one</option>
-    <option>one</option>
-    <option>one</option> */}
+                { this.listItemOptions() }
               </select>
             </div>
             <div className="input-group">
-              <label htmlFor="id">Item Endpoint</label>
-              <p className="description">This is API friendly enpoint where the item will be located.</p>
+              <label htmlFor="id">Receiver Address</label>
+              <p className="description">This is the address of the person receiving the item. (COPY PASTE PLEASE)</p>
               <br />
               <input
+                value={this.state.receiverAddress}
                 type="text"
                 name="id"
                 onChange={e => {
-                  
-                  this.setState({
-                    id: e.target.value
-                  });
+                  // DO WEB3 ADDRESS VALIDATION BEFORE SETTING STATE
+                  if (this.checkAddress(e.target.value) || e.target.value === '') {
+                    this.setState({
+                      receiverAddress: e.target.value
+                    });
+                  }
                 }}
-                placeholder="/newItemname"
+                placeholder="0x1337c0de2ce6f6f75044ebaf22449db048faec5d"
               />
             </div>
             
@@ -107,6 +106,7 @@ export default class SpawnItem extends Component {
                 className="no yes right hundred"
                 onClick={() => {
                   console.log('this.state', this.state);
+                  this.execute();
                 }}
               >
                 Spawn
