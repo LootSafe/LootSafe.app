@@ -18,11 +18,6 @@ export default class SpawnItem extends Component {
     };
   }
 
-    // const availableItems = this.state.items.map(item => {
-    //     <option value={item.name} key={item.name}>
-    //     {item.name}
-    //     </option>
-    // })
   componentWillMount() {
     fetch(`${apiAddr}/item/ledger`)
       .then(res => res.json())
@@ -76,13 +71,9 @@ export default class SpawnItem extends Component {
               <p className="description">This is the human friendly name of the item.</p>
               <br />
               <select >
-              {
+                {
       this.listItemOptions()
-      
     }
-    {/* <option key="1" value="one">one</option>
-    <option>one</option>
-    <option>one</option> */}
               </select>
             </div>
             <div className="input-group">
@@ -93,7 +84,6 @@ export default class SpawnItem extends Component {
                 type="text"
                 name="id"
                 onChange={e => {
-                  
                   this.setState({
                     id: e.target.value
                   });
