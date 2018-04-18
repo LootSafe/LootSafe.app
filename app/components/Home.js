@@ -10,7 +10,7 @@ import Welcome from './Core/Welcome';
 import Status from './Core/Status';
 import ItemList from './Admin/ItemList';
 import NewItem from './Admin/NewItem';
-import SpawnItem from './Admin/SpawnItem'
+import SpawnItem from './Admin/SpawnItem';
 
 // Crafting
 import NewRecipe from './Admin/NewRecipe';

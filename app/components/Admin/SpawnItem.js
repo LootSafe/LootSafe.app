@@ -94,18 +94,18 @@ export default class SpawnItem extends Component {
       <div className="wtf">
         { this.state.showAlert &&
           <Alert
-            message="New item created!"
+            message="Item successfully distributed!"
             confirm={() => {}}
           />
         }
         <div>
-          <h2 style={{ float: 'left' }}>Spawn Item</h2>
+          <h2 style={{ float: 'left' }}>Distribute Item</h2>
         </div>
         <div className="form">
           <div className="full">
             <div className="input-group">
-              <label htmlFor="name">Name</label>
-              <p className="description">This is the human friendly name of the item.</p>
+              <label htmlFor="name">Item</label>
+              <p className="description">This is the item you wish to distribute.</p>
               <br />
               <select
                 onChange={e => {
