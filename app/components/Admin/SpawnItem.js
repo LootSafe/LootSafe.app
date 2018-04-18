@@ -11,12 +11,13 @@ export default class SpawnItem extends Component {
     this.state = {
       items: [],
       showAlert: false,
+      itemAddress: '',
       receiverAddress: ''
     };
 
     this.checkAddress = this.checkAddress.bind(this);
   }
-  
+
   componentWillMount() {
     fetch(`${apiAddr}/item/ledger`)
       .then(res => res.json())
@@ -42,7 +43,7 @@ export default class SpawnItem extends Component {
   }
 
   listItemOptions() {
-    return this.state.items.map((item, index) => {
+    return this.state.items.map((item) => {
       return (
         <option key={item.id} value={item.address}>{item._parsed.name}</option>
       );
@@ -51,12 +52,41 @@ export default class SpawnItem extends Component {
 
   execute() {
     const payload = {
-      name: this.state.name,
-      id: this.state.id,
-      symbol: this.state.symbol,
-      totalSupply: this.state.supply,
-      metadata: this.state.metadata
+      itemAddress: this.state.itemAddress,
+      to: this.state.receiverAddress
     };
+    console.log('payload is: ', payload);
+
+    fetch(`${apiAddr}/item/spawn`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
+      },
+      body: JSON.stringify({
+        itemAddress: this.state.itemAddress,
+        to: this.state.receiverAddress
+      })
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (json.status === 200) {
+          this.setState({
+            showAlert: true
+          });
+        } else {
+          this.setState({
+            error: 'Error spawning item!'
+          });
+        }
+        return null;
+      })
+      .catch(e => {
+        console.warn('Error spawning item', e);
+        this.setState({
+          error: 'Error spawning item, check console for details.'
+        });
+      });
   }
 
   render() {
@@ -77,7 +107,13 @@ export default class SpawnItem extends Component {
               <label htmlFor="name">Name</label>
               <p className="description">This is the human friendly name of the item.</p>
               <br />
-              <select >
+              <select
+                onChange={e => {
+                  this.setState({
+                    itemAddress: e.target.value
+                  });
+                }}
+              >
                 { this.listItemOptions() }
               </select>
             </div>
@@ -100,7 +136,6 @@ export default class SpawnItem extends Component {
                 placeholder="0x1337c0de2ce6f6f75044ebaf22449db048faec5d"
               />
             </div>
-            
             <div className="input-group">
               <button
                 className="no yes right hundred"
