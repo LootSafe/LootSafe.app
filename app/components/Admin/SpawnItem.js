@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { apiAddr } from '../../config';
 import Alert from '../Core/Alert';
+import Warning from '../Core/Warning';
 
 
 export default class SpawnItem extends Component {
@@ -11,6 +12,7 @@ export default class SpawnItem extends Component {
     this.state = {
       items: [],
       showAlert: false,
+      error: false,
       itemAddress: '',
       receiverAddress: ''
     };
@@ -51,12 +53,6 @@ export default class SpawnItem extends Component {
   }
 
   execute() {
-    const payload = {
-      itemAddress: this.state.itemAddress,
-      to: this.state.receiverAddress
-    };
-    console.log('payload is: ', payload);
-
     fetch(`${apiAddr}/item/spawn`, {
       method: 'POST',
       headers: {
@@ -92,6 +88,16 @@ export default class SpawnItem extends Component {
   render() {
     return (
       <div className="wtf">
+        { this.state.error &&
+          <Warning
+            confirm={() => {
+              this.setState({
+                error: false
+              });
+            }}
+            message={this.state.error}
+          />
+          }
         { this.state.showAlert &&
           <Alert
             message="Item successfully distributed!"
@@ -141,7 +147,6 @@ export default class SpawnItem extends Component {
               <button
                 className="no yes right hundred"
                 onClick={() => {
-                  console.log('this.state', this.state);
                   this.execute();
                 }}
               >
