@@ -150,7 +150,7 @@ export default class SpawnItem extends Component {
                   this.execute();
                 }}
               >
-                Spawn
+                Distribute
               </button>
             </div>
           </div>
