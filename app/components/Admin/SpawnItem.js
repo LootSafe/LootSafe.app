@@ -65,7 +65,7 @@ export default class SpawnItem extends Component {
       },
       body: JSON.stringify({
         itemAddress: this.state.itemAddress,
-        to: this.state.receiverAddress
+        receiverAddress: this.state.receiverAddress
       })
     })
       .then(res => res.json())
@@ -114,6 +114,7 @@ export default class SpawnItem extends Component {
                   });
                 }}
               >
+                <option>Please select an item.</option>
                 { this.listItemOptions() }
               </select>
             </div>

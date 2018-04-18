@@ -18,9 +18,8 @@ export default class Sidebar extends Component {
               <Link to="/admin-item-new">New Item</Link>
             </li>
             <li>
-            <Link to="/admin-item-spawn">Spawn Item</Link>
-          </li>
-            <li>Distribute Item</li>
+              <Link to="/admin-item-spawn">Distribute Item</Link>
+            </li>
           </ul>
           <h3 className="section-header">Crafter</h3>
           <ul>
