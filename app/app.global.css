@@ -674,6 +674,13 @@ textarea:focus, input:focus{
   width: calc(100% - 2rem);
 }
 
+.hundredDistribute {
+  position: absolute;
+  bottom: 6rem;
+  right: 1rem;
+  width: calc(100% - 2rem);
+}
+
 .darker {
   background: #151b1d;
 }

@@ -145,7 +145,7 @@ export default class SpawnItem extends Component {
             </div>
             <div className="input-group">
               <button
-                className="no yes right hundred"
+                className="no yes hundredDistribute"
                 onClick={() => {
                   this.execute();
                 }}
