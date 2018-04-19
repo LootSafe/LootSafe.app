@@ -13,6 +13,7 @@ export default class SpawnItem extends Component {
       items: [],
       showAlert: false,
       error: false,
+      loading: true,
       itemAddress: '',
       receiverAddress: ''
     };
@@ -26,7 +27,8 @@ export default class SpawnItem extends Component {
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            items: json.data
+            items: json.data,
+            loading: false
           });
         }
         return null;
@@ -101,11 +103,22 @@ export default class SpawnItem extends Component {
         { this.state.showAlert &&
           <Alert
             message="Item successfully distributed!"
-            confirm={() => {}}
+            confirm={() => {
+              this.setState({
+                showAlert: false
+              });
+            }}
           />
         }
         <div>
           <h2 style={{ float: 'left' }}>Distribute Item</h2>
+          { this.state.loading &&
+            <h2
+              className="refresh"
+            >
+              <i className="fas fa-spinner fa-pulse" />
+            </h2>
+          }
         </div>
         <div className="form">
           <div className="full">
