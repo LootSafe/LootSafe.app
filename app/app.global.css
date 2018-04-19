@@ -621,6 +621,17 @@ h2 {
   display: inline-block;
 }
 
+.full {
+  width: calc(100% - 4rem);
+  float: left;
+  height: 23rem;
+  padding-right: 2rem;
+  padding: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+
 .input-group {
   padding: 0 0 3rem 0;
 }
@@ -659,6 +670,13 @@ textarea:focus, input:focus{
 .hundred {
   position: absolute;
   bottom: 2rem;
+  right: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.hundredDistribute {
+  position: absolute;
+  bottom: 6rem;
   right: 1rem;
   width: calc(100% - 2rem);
 }

@@ -80,7 +80,7 @@ export default class NewRecipe extends Component {
   }
 
   buildItemOptions() {
-    return this.state.items.map((item, index) => {
+    return this.state.items.map((item) => {
       return (
         <option key={item.id} value={item.address}>{item._parsed.name}</option>
       );
