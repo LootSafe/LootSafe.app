@@ -18,6 +18,10 @@ import NewDeconstructionRecipe from './Admin/NewDeconstructionRecipe';
 import Craftables from './Admin/Craftables';
 import Deconstructables from './Admin/Deconstructables';
 
+// Lootbox
+import AddLootable from './Admin/AddLootable';
+import UpdateChances from './Admin/UpdateChances';
+
 type Props = {};
 
 export default class Home extends Component<Props> {
@@ -67,6 +71,8 @@ export default class Home extends Component<Props> {
             <Route path="/admin-crafter-deconstruction-new" component={NewDeconstructionRecipe} />
             <Route path="/admin-crafter-craftables" component={Craftables} />
             <Route path="/admin-crafter-deconstructables" component={Deconstructables} />
+            <Route path="/admin-lootbox-add" component={AddLootable} />
+            <Route path="/admin-lootbox-chances" component={UpdateChances} />
           </Switch>
         </div>
         <Sidebar />
