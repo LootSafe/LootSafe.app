@@ -5,22 +5,20 @@ import Alert from '../Core/Alert';
 import Warning from '../Core/Warning';
 
 
-export default class UpdateChances extends Component {
+export default class UpdateCost extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       showAlert: false,
       error: false,
-      epicChance: 1,
-      rareChance: 3,
-      epicChance: 20
+      cost: 0
     };
   }
 
 
   execute() {
-    fetch(`${apiAddr}/lootbox/chances/update/${this.state.epicChance}/${this.state.rareChance}/${this.state.uncommonChance}`, {
+    fetch(`${apiAddr}/lootbox/cost/${this.state.cost}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -35,15 +33,15 @@ export default class UpdateChances extends Component {
           });
         } else {
           this.setState({
-            error: 'Error updating loot table chances!'
+            error: 'Error updating lootbox cost!'
           });
         }
         return null;
       })
       .catch(e => {
-        console.warn('Error updating loot table chances', e);
+        console.warn('Error updating lootbox cost', e);
         this.setState({
-          error: 'Error updating loot table chances, check console for details.'
+          error: 'Error updating lootbox cost, check console for details.'
         });
       });
   }
@@ -63,7 +61,7 @@ export default class UpdateChances extends Component {
           }
         { this.state.showAlert &&
           <Alert
-            message="LootBox chances updated!"
+            message="LootBox cost updated!"
             confirm={() => {
               this.setState({
                 showAlert: false
@@ -72,7 +70,7 @@ export default class UpdateChances extends Component {
           />
         }
         <div>
-          <h2 style={{ float: 'left' }}>Update Lootbox Chances</h2>
+          <h2 style={{ float: 'left' }}>Update Lootbox Cost</h2>
           { this.state.loading &&
             <h2
               className="refresh"
@@ -84,48 +82,18 @@ export default class UpdateChances extends Component {
         <div className="form">
           <div className="full" style={{ height: 'auto' }}>
             <div className="input-group">
-              <label htmlFor="name">Epic Chance</label>
-              <p className="description">This is the percent chance you'll receive an epic item.</p>
+              <label htmlFor="name">Lootbox cost</label>
+              <p className="description">This is the cost in wei (or loot) to open a lootbox.</p>
               <br />
               <input
                 type="number"
                 name="name"
                 onChange={e => {
                   this.setState({
-                    epicChance: e.target.value
+                    cost: e.target.value
                   });
                 }}
                 placeholder="1"
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="name">Rare Chance</label>
-              <p className="description">This is the percent chance you'll receive a rare item.</p>
-              <br />
-              <input
-                type="number"
-                name="name"
-                onChange={e => {
-                  this.setState({
-                    rareChance: e.target.value
-                  });
-                }}
-                placeholder="3"
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="name">Uncommon Chance</label>
-              <p className="description">This is the percent chance you'll receive a uncommon item.</p>
-              <br />
-              <input
-                type="number"
-                name="name"
-                onChange={e => {
-                  this.setState({
-                    uncommonChance: e.target.value
-                  });
-                }}
-                placeholder="20"
               />
             </div>
             <div className="input-group">
@@ -136,7 +104,7 @@ export default class UpdateChances extends Component {
                   this.execute();
                 }}
               >
-                Update LootBox Chances
+                Update LootBox Cost
               </button>
             </div>
           </div>

@@ -42,13 +42,13 @@ export default class Sidebar extends Component {
               <Link to="/admin-lootbox-add">Add Item</Link>
             </li>
             <li>
-              <Link to="/admin-item-new">Lootables</Link>
+              <Link to="/admin-lootbox-lootables">Lootables</Link>
             </li>
             <li>
               <Link to="/admin-lootbox-chances">Update Chances</Link>
             </li>
             <li>
-              <Link to="/admin-item-new">Update Cost</Link>
+              <Link to="/admin-lootbox-cost">Update Cost</Link>
             </li>
           </ul>
         </div>
