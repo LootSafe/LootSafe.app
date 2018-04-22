@@ -55,7 +55,7 @@ export default class Sidebar extends Component {
           />
         }
         <div className="half">
-          <img src="http://lootsafe-cachestash.9egbdneg7uzvgp.maxcdn-edge.com/chestopen.png" className="welcomeImage" />
+          <img src="http://lootsafe-cachestash.9egbdneg7uzvgp.maxcdn-edge.com/welcome.png" className="welcomeImage" />
         </div>
         <div className="half">
           <h3>Welcome</h3>

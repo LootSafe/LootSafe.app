@@ -42,12 +42,13 @@ export default class Lootables extends Component {
               .then(json2 => {
                 const items = json2.data;
                 items.map(item => {
-                  let modifiedItem = json.data.filter(i => i.address = item)[0];
+                  let modifiedItem = json.data.filter(i => i.address === item)[0];
                   modifiedItem.rarity = rarity;
-                  console.log('modifiedItem', modifiedItem.address);
                   tempItems.push(modifiedItem);
+                  this.setState({
+                    items: tempItems
+                  });
                 });
-                console.log('tempItems', tempItems)
               })
               .catch(e => {
                 this.setState({
@@ -91,28 +92,7 @@ export default class Lootables extends Component {
           <td>{item._parsed.symbol}</td>
           <td>{item._parsed.id}</td>
           <td>{item.totalSupply}</td>
-          <td>
-            { parseInt(item.ownerBalance, 0) > 0 &&
-              <button
-                className="no yes delist"
-                onClick={() => {
-                  this.setState({ showAlert: true, activeItem: item.address });
-                }}
-              >
-                Delsit
-              </button>
-            }
-            { parseInt(item.ownerBalance, 0) === 0 &&
-              <button
-                className="no delisted"
-                onClick={() => {
-                  this.setState({ showAlert: true, activeItem: item.address });
-                }}
-              >
-                Delsited
-              </button>
-            }
-          </td>
+          <td>{item.rarity}</td>
         </tr>
       );
     });
@@ -121,35 +101,6 @@ export default class Lootables extends Component {
   render() {
     return (
       <div className="wtf">
-        { this.state.showAlert &&
-          <Alert
-            message="Really remove new supply of items?"
-            cancel={() => {
-              this.setState({ showAlert: false });
-            }}
-            confirm={() => {
-              fetch(`${apiAddr}/item/clearAvailability`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
-                },
-                body: JSON.stringify({
-                  itemAddress: this.state.activeItem
-                })
-              })
-              .then(res => res.json())
-              .then(() => {
-                this.setState({ showAlert: false });
-                this.refresh();
-                return null;
-              })
-              .catch(e => {
-                console.log('Error clearing availability', e);
-              });
-            }}
-          />
-        }
         { this.state.error &&
           <Warning
             confirm={() => {
@@ -160,7 +111,7 @@ export default class Lootables extends Component {
             message={this.state.error}
           />
         }
-        <h2 style={{ float: 'left' }}>List Items</h2>
+        <h2 style={{ float: 'left' }}>Lootbox Items</h2>
         <table>
           <tr className="table-heading">
             <th>Icon</th>
@@ -169,7 +120,7 @@ export default class Lootables extends Component {
             <th>Symbol</th>
             <th>Id</th>
             <th>Supply</th>
-            <th>Delist</th>
+            <th>Rarity</th>
           </tr>
           {this.buildTableData()}
           { this.state.loading &&

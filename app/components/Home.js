@@ -63,24 +63,29 @@ export default class Home extends Component<Props> {
             }}
           />
         }
-        <Header />
-        <div className={styles.container} id="content" data-tid="container">
-          <Switch>
-            <Route path="/admin-item-list" component={ItemList} />
-            <Route path="/admin-item-new" component={NewItem} />
-            <Route path="/admin-item-spawn" component={SpawnItem} />
-            <Route path="/admin-crafter-new" component={NewRecipe} />
-            <Route path="/admin-crafter-deconstruction-new" component={NewDeconstructionRecipe} />
-            <Route path="/admin-crafter-craftables" component={Craftables} />
-            <Route path="/admin-crafter-deconstructables" component={Deconstructables} />
-            <Route path="/admin-lootbox-add" component={AddLootable} />
-            <Route path="/admin-lootbox-chances" component={UpdateChances} />
-            <Route path="/admin-lootbox-cost" component={UpdateCost} />
-            <Route path="/admin-lootbox-lootables" component={Lootables} />
-          </Switch>
-        </div>
-        <Sidebar />
-        <Status />
+
+        { !this.state.showWelcome &&
+          <div>
+            <Header />
+            <div className={styles.container} id="content" data-tid="container">
+              <Switch>
+                <Route path="/admin-item-list" component={ItemList} />
+                <Route path="/admin-item-new" component={NewItem} />
+                <Route path="/admin-item-spawn" component={SpawnItem} />
+                <Route path="/admin-crafter-new" component={NewRecipe} />
+                <Route path="/admin-crafter-deconstruction-new" component={NewDeconstructionRecipe} />
+                <Route path="/admin-crafter-craftables" component={Craftables} />
+                <Route path="/admin-crafter-deconstructables" component={Deconstructables} />
+                <Route path="/admin-lootbox-add" component={AddLootable} />
+                <Route path="/admin-lootbox-chances" component={UpdateChances} />
+                <Route path="/admin-lootbox-cost" component={UpdateCost} />
+                <Route path="/admin-lootbox-lootables" component={Lootables} />
+              </Switch>
+            </div>
+            <Sidebar />
+            <Status />
+          </div>
+        }
       </div>
     );
   }
