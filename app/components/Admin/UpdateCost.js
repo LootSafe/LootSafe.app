@@ -22,7 +22,7 @@ export default class UpdateCost extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
+        key: localStorage.getItem('apikey')
       }
     })
       .then(res => res.json())

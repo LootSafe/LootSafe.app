@@ -33,6 +33,8 @@ export default class ItemList extends Component {
           const tickIn = (i) => {
             const unpushed = this.state.items;
             unpushed.push(json.data[i]);
+
+            console.log(unpushed)
             this.setState({
               items: unpushed
             });
@@ -106,13 +108,13 @@ export default class ItemList extends Component {
               <img src={`${JSON.parse(item.metadata).img}`} alt="Icon of Item" height="45" />
             }
           </td>
-          <td>{item._parsed.name}</td>
+          <td>{item.name}</td>
           <td className="address">{item.address}</td>
-          <td>{item._parsed.symbol}</td>
-          <td>{item._parsed.id}</td>
+          <td>{item.symbol}</td>
+          <td>{item.id}</td>
           <td>{item.totalSupply}</td>
           <td>
-            { parseInt(item.ownerBalance, 0) > 0 &&
+            { item.ownerBalance > 0 &&
               <button
                 className="no yes delist"
                 onClick={() => {
@@ -122,11 +124,11 @@ export default class ItemList extends Component {
                 Delsit
               </button>
             }
-            { parseInt(item.ownerBalance, 0) === 0 &&
+            { item.ownerBalance === 0 &&
               <button
                 className="no delisted"
                 onClick={() => {
-                  this.setState({ showAlert: true, activeItem: item.address });
+                  //this.setState({ showAlert: true, activeItem: item.address });
                 }}
               >
                 Delsited

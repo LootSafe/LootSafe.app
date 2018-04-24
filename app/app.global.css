@@ -13,6 +13,10 @@
  * Copyright (c) 2018 Daniel Eden
  */
 
+#root {
+  background: rgba(35, 46, 51, 0.5);
+}
+
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
@@ -305,7 +309,7 @@ li:hover {
 
 #sidebar {
   position: absolute;
-  background-color: rgba(53, 69, 77, 0.1);
+  background-color: rgba(53, 69, 77, 0.5);
   width: 250px;
   left: 0;
   margin-top: 1px;
@@ -511,6 +515,7 @@ h2 {
 }
 .address {
   font-size: 9pt;
+  text-transform: none !important;
 }
 
 .wtf {

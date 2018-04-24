@@ -59,7 +59,7 @@ export default class SpawnItem extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
+        key: localStorage.getItem('apikey')
       },
       body: JSON.stringify({
         itemAddress: this.state.itemAddress,

@@ -5,6 +5,7 @@ import Alert from '../Core/Alert';
 import Warning from '../Core/Warning';
 
 const apiAddr = localStorage.getItem('apiurl');
+const apiKey = localStorage.getItem('apikey');
 
 export default class NewItem extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ export default class NewItem extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
+        key: apiKey
       },
       body: JSON.stringify(payload)
     })
