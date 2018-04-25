@@ -62,15 +62,15 @@ export default class SpawnItem extends Component {
         key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
       },
       body: JSON.stringify({
-        itemAddress: this.state.itemAddress,
-        receiverAddress: this.state.receiverAddress
+        itemAddress: this.state.itemAddress
       })
     })
       .then(res => res.json())
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            showAlert: true
+            showAlert: true,
+            receiverAddress: ''
           });
         } else {
           this.setState({
