@@ -12,7 +12,7 @@ export default class UpdateCost extends Component {
     this.state = {
       showAlert: false,
       error: false,
-      cost: 0
+      cost: ''
     };
   }
 
@@ -29,7 +29,8 @@ export default class UpdateCost extends Component {
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            showAlert: true
+            showAlert: true,
+            cost: ''
           });
         } else {
           this.setState({
@@ -88,6 +89,7 @@ export default class UpdateCost extends Component {
               <input
                 type="number"
                 name="name"
+                value={this.state.cost}
                 onChange={e => {
                   this.setState({
                     cost: e.target.value

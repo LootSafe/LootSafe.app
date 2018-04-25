@@ -12,9 +12,9 @@ export default class UpdateChances extends Component {
     this.state = {
       showAlert: false,
       error: false,
-      epicChance: 1,
-      rareChance: 3,
-      epicChance: 20
+      epicChance: '',
+      rareChance: '',
+      uncommonChance: ''
     };
   }
 
@@ -31,7 +31,10 @@ export default class UpdateChances extends Component {
       .then(json => {
         if (json.status === 200) {
           this.setState({
-            showAlert: true
+            showAlert: true,
+            epicChance: '',
+            rareChance: '',
+            uncommonChance: ''
           });
         } else {
           this.setState({
@@ -90,6 +93,7 @@ export default class UpdateChances extends Component {
               <input
                 type="number"
                 name="name"
+                value={this.state.epicChance}
                 onChange={e => {
                   this.setState({
                     epicChance: e.target.value
@@ -105,6 +109,7 @@ export default class UpdateChances extends Component {
               <input
                 type="number"
                 name="name"
+                value={this.state.rareChance}
                 onChange={e => {
                   this.setState({
                     rareChance: e.target.value
@@ -120,6 +125,7 @@ export default class UpdateChances extends Component {
               <input
                 type="number"
                 name="name"
+                value={this.state.uncommonChance}
                 onChange={e => {
                   this.setState({
                     uncommonChance: e.target.value
