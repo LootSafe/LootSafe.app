@@ -62,7 +62,8 @@ export default class SpawnItem extends Component {
         key: 'pWpzWuxoKUKAmlHc0wPi7lFS38FTth'
       },
       body: JSON.stringify({
-        itemAddress: this.state.itemAddress
+        itemAddress: this.state.itemAddress,
+        receiverAddress: this.state.receiverAddress
       })
     })
       .then(res => res.json())
