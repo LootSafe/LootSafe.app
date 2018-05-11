@@ -1,10 +1,28 @@
 // @flow
+
 import React, { Component } from 'react';
+
+// import Web3 from 'web3';
 import { apiAddr } from '../../config';
 import Alert from '../Core/Alert';
 import Warning from '../Core/Warning';
 
+const ipc = require('electron').ipcRenderer;
+// let web3 = null;
+// if (typeof web3 !== 'undefined') {
+//   web3 = new Web3(web3.currentProvider);
+// } else {
+//   // set the provider you want from Web3.providers
+//   web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+// }
+const Web3 = require('web3');
 
+if (typeof window.web3 !== 'undefined') {
+  window.web3 = new Web3(window.web3.currentProvider);
+} else {
+  // Other provider
+  window.web3 = new Web3(new Web3.providers.HttpProvider('yourOtherProvider'));
+}
 export default class SpawnItem extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +55,51 @@ export default class SpawnItem extends Component {
         console.warn('Error fetching items', e);
       });
   }
+  // if (typeof window.web3 !== 'undefined') {
+  //   window.web3 = new Web3(window.web3.currentProvider);
+  // } else {
+  //   // Other provider
+  //   window.web3 = new Web3(new Web3.providers.HttpProvider('yourOtherProvider'));
+  // }
+
+  isElectron() {
+    if (ipc) return true;
+    return false;
+  }
+
+  sendToElectron(message) {
+    ipc.send(message);
+  }
+
+  openMetamaskPopup() {
+    this.sendToElectron('open-metamask-popup');
+  }
+
+  closeMetamaskPopup() {
+    this.sendToElectron('close-metamask-popup');
+  }
+
+  openMetamaskNotification() {
+    this.sendToElectron('open-metamask-notification');
+  }
+
+  closeMetamaskNotification() {
+    this.sendToElectron('close-metamask-notification');
+  }
+
+  // sendEther(contractFunction) {
+  //   web3.eth.sendTransaction({
+  //     to: '0x8f6c0c887F7CAF7D512C964eA2a3e668D94C5304',
+  //     value: '1000000000000'
+  //   }, (err, res) => {
+  //     if (err) closeMetamaskNotification();
+  //     if (res) closeMetamaskNotification();
+  //   });
+
+  //   setTimeout(() => {
+  //     openMetamaskNotification();
+  //   }, 500);
+  // }
 
   checkAddress(address) {
     if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
@@ -121,6 +184,18 @@ export default class SpawnItem extends Component {
             </h2>
           }
         </div>
+        <div >
+
+          {/* <div class="col-md-3">
+            <p><button class="btn btn-danger" onclick="closeMetamaskPopup()" href="#" >Close Metamask Popup</button></p>
+          </div>
+          <div class="col-md-3">
+            <p><button class="btn btn-success" onclick="openMetamaskNotification()" href="#"> Open Metamask Notification</button></p>
+          </div>
+          <div class="col-md-3">
+            <p><button class="btn btn-danger" onclick="closeMetamaskNotification()" href="#" >Close Metamask Notification</button></p>
+          </div> */}
+        </div>
         <div className="form">
           <div className="full">
             <div className="input-group">
@@ -158,6 +233,7 @@ export default class SpawnItem extends Component {
               />
             </div>
             <div className="input-group">
+              <button onClick={this.openMetamaskPopup()} href="#" >Open Metamask Popup</button>
               <button
                 className="no yes hundredDistribute"
                 onClick={() => {
