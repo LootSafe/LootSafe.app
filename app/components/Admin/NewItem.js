@@ -17,7 +17,7 @@ export default class NewItem extends Component {
       name: '',
       id: '',
       symbol: '',
-      supply: '',
+      supply: 0,
       metadata: ''
     };
   }
@@ -46,6 +46,14 @@ export default class NewItem extends Component {
       totalSupply: this.state.supply,
       metadata: this.state.metadata
     };
+
+    this.setState({
+      name: '',
+      id: '',
+      symbol: '',
+      sypply: 0,
+      metadata: ''
+    })
 
     fetch(`${apiAddr}/item/new`, {
       method: 'POST',
@@ -111,6 +119,7 @@ export default class NewItem extends Component {
               <input
                 type="text"
                 name="name"
+                value={this.state.name}
                 onChange={e => {
                   this.setState({
                     name: e.target.value
@@ -126,6 +135,7 @@ export default class NewItem extends Component {
               <input
                 type="text"
                 name="id"
+                value={this.state.id}
                 onChange={e => {
                   this.setState({
                     id: e.target.value
@@ -141,6 +151,7 @@ export default class NewItem extends Component {
               <input
                 type="text"
                 name="symbol"
+                value={this.state.symbol}
                 onChange={e => {
                   this.setState({
                     symbol: e.target.value
@@ -158,6 +169,7 @@ export default class NewItem extends Component {
               <input
                 type="number"
                 name="supply"
+                value={this.state.supply}
                 onChange={e => {
                   this.setState({
                     supply: e.target.value
@@ -173,6 +185,7 @@ export default class NewItem extends Component {
               <input
                 type="text"
                 name="metadata"
+                value={this.state.metadata}
                 onChange={e => {
                   this.setState({
                     metadata: e.target.value

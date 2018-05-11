@@ -49,7 +49,7 @@ export default class SpawnItem extends Component {
   listItemOptions() {
     return this.state.items.map((item) => {
       return (
-        <option key={item.id} value={item.address}>{item._parsed.name}</option>
+        <option key={item.id} value={item.address}>{item.name}</option>
       );
     });
   }
@@ -63,7 +63,7 @@ export default class SpawnItem extends Component {
       },
       body: JSON.stringify({
         itemAddress: this.state.itemAddress,
-        receiverAddress: this.state.receiverAddress
+        to: this.state.receiverAddress
       })
     })
       .then(res => res.json())

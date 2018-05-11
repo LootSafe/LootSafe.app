@@ -109,7 +109,7 @@ export default class ItemList extends Component {
             }
           </td>
           <td>{item.name}</td>
-          <td className="address">{item.address}</td>
+          <td className="address">{ (item.address === '0x0') ? 'TRANSACTION STILL MINING...' : item.address}</td>
           <td>{item.symbol}</td>
           <td>{item.id}</td>
           <td>{item.totalSupply}</td>
