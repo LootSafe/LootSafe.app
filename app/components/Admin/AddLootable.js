@@ -39,7 +39,7 @@ export default class AddLootable extends Component {
   listItemOptions() {
     return this.state.items.map((item) => {
       return (
-        <option key={item.id} value={item.address}>{item._parsed.name}</option>
+        <option key={item.id} value={item.address}>{item.name}</option>
       );
     });
   }

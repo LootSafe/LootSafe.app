@@ -106,7 +106,7 @@ export default class Deconstructables extends Component {
         console.log('item', item)
         return (
           <span>
-            {`${item[0]._parsed.name} (${reqs[1][i]}), `}
+            {`${item[0].name} (${reqs[1][i]}), `}
           </span>
         );
       }
@@ -122,13 +122,13 @@ export default class Deconstructables extends Component {
               <img src={`${JSON.parse(item.metadata).img}`} alt="Icon of Item" height="45" />
             }
           </td>
-          <td >{item._parsed.name}</td>
+          <td >{item.name}</td>
           <td className="address">
             { this.state.recipes[item.address] &&
               <span>{this.renderRequirements(this.state.recipes[item.address], item.address)}</span>
             }
           </td>
-          <td>{item._parsed.id}</td>
+          <td>{item.id}</td>
         </tr>
       );
     });

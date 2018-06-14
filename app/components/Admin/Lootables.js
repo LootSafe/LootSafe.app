@@ -87,10 +87,10 @@ export default class Lootables extends Component {
               <img src={`${JSON.parse(item.metadata).img}`} alt="Icon of Item" height="45" />
             }
           </td>
-          <td>{item._parsed.name}</td>
+          <td>{item.name}</td>
           <td className="address">{item.address}</td>
-          <td>{item._parsed.symbol}</td>
-          <td>{item._parsed.id}</td>
+          <td>{item.symbol}</td>
+          <td>{item.id}</td>
           <td>{item.totalSupply}</td>
           <td>{item.rarity}</td>
         </tr>

@@ -82,7 +82,7 @@ export default class NewDeconstructionRecipe extends Component {
   buildItemOptions() {
     return this.state.items.map((item, index) => {
       return (
-        <option key={item.id} value={item.address}>{item._parsed.name}</option>
+        <option key={item.id} value={item.address}>{item.name}</option>
       );
     });
   }
